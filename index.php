@@ -10,7 +10,7 @@ require_once 'db.php';
 <!DOCTYPE html>
   <html>
     <head>
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -28,21 +28,11 @@ require_once 'db.php';
     </div>
     <div class="section white">
       <div class="row container">
-        <h2 class="header center-align">Logowanie</h2>
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" type="email" name="email" class="validate">
-            <label for="email">Email</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="password" type="password" class="validate" name="password">
-            <label for="password">Hasło</label>
-          </div>
-        </div>
-        </form>
+        <h2 class="header center-align">INDEX -.-</h2>
+        <h4 class="center-align"><a href="registration.php">Rejstracja</a></h4>
+        <div class="divider"></div>
+        <h4 class="center-align"><a href="login.php">Logowanie</a></h4>
+      
       </div>
     </div>
     <div class="parallax-container">

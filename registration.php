@@ -10,6 +10,7 @@ require_once 'db.php';
 <!DOCTYPE html>
   <html>
     <head>
+    <meta charset="UTF-8">
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
