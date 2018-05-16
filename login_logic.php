@@ -90,12 +90,11 @@ if(empty($first_name_error) && empty($last_name_error) && empty($email_error) &&
 unset($pdo);
 
 }
-// dodac obsluge bledow !
-//else{
-//    header('location: error.php');
-//}
+else{
+  echo $email_error . $first_name_error . $last_name_error .  $password_error . $password2_error;
 
 }
 
-echo $email_error . $first_name_error . $last_name_error .  $password_error . $password2_error;
+}
+
 ?>
