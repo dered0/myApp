@@ -1,10 +1,3 @@
-<?php
-// this file include db config
-require_once 'db.php';
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +22,7 @@ require_once 'db.php';
     <div class="section white">
       <div class="row container">
         <h2 class="header center-align">Rejstracja</h2>
-      <form class="col s12">
+      <form class="col s12" action="http://localhost/myApp/login_logic.php" method="POST">
         <div class="row">
           <div class="input-field col s6">
             <input id="first_name" type="text" name="first_name">
@@ -57,6 +50,15 @@ require_once 'db.php';
             <input id="email" type="email" name="email" class="validate">
             <label for="email">Email</label>
             <span class="helper-text" data-error="Hmm .. Zły adres !" data-success="Dobrze !">Pomoc :)</span>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col s6 center-align">
+            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Rejstracja
+            </button>
+          </div>
+          <div class="col s6 center-align">
+          <a class="waves-effect waves-light btn-large" href="login.php">Logowanie</a>
           </div>
         </div>
         </form>
