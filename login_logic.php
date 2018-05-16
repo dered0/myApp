@@ -1,100 +1,68 @@
 <?php
-// this file include db config
+
+// include db config
+
 require_once 'db.php';
 
-// form variables
-$first_name = $last_name = $password = $password2 = $email = '';
-$email_error = $first_name_error = $last_name_error =  $password_error = $password2_error ='';
+//init vars
+$email = $password = '';
+$email_error = $password_error = '';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-  $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-  $first_name = trim($_POST['first_name']);
-  $last_name = trim($_POST['last_name']);
-  $password = trim($_POST['password']);
-  $password2 = trim($_POST['password2']);
-  $email = trim($_POST['email']);
+    if(empty($email)){
+        $email_error = 'Wprowadź adres email !';
+    }
 
-//validate email
+    if(empty($password)){
+        $password_error = 'Wprowadź hasło !';
+    }
 
-if(empty($email)){
-  $email_error = 'Wprowadź email!';
-}else{
-  $sql = 'SELECT id FROM users WHERE email = :email';
+    if(empty($email_error) && empty($password_error)){
 
-  if($stmt = $pdo->prepare($sql)){
+        $sql = 'SELECT first_name, email, password FROM users WHERE email = :email';
 
-    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        if($stmt = $pdo->prepare($sql)){
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
-    //trying to execute
+            if($stmt->execute()){
+                if($stmt->rowCount() === 1){
+                    if($row = $stmt->fetch()){
+                        $hashed_password = $row['password'];
+                        if(password_verify($password, $hashed_password)){
+                            // LOGIN OK !
+                            session_start();
+                            $_SESSION['email'] = $email;
+                            $_SESSION['first_name'] = $row['first_name'];
+                            header('location: index.php');
+                        }else{
+                            $password_error = 'Hasło nieprawidłowe !';
+                        }
 
-    if($stmt->execute()){
-      // if email already exist:
-        if($stmt->rowCount() === 1){
-          $email_error = 'Podany e-mail jest już zajęty !';
+                    }
+                }else{
+                    $email_error = "Brak konta dla podanego adresu e-mail!";
+                }
+
+            }else{
+                die('Cos poszlo nie tak :/');
+            }
+
         }
-    }else{
-      die('Coś się popsuło :(');
+        unset($stmt);
+
     }
-  }
-  unset($stmt);
-}
 
-//valide name
-if(empty($first_name)){
-  $first_name_error = 'Proszę wprowadzić imię !';
-}
+    unset($pdo);
 
-// validate second name
-if(empty($last_name)){
-  $last_name_error = 'Nie podano nazwiska !';
-}
-
-//validate password
-
-if(empty($password)){
-  $password_error = 'Proszę wprowadzić hasło !';
-}//else if(strlen($password < 6)){
- // $password_error = 'Hasło musi miec co najmniej 6 znakow!';
-//}
-
-//validate confirm password
-if(empty($password2)){
-  $password2_error = 'Proszę potwiedzić hasło !';
 }else{
-  if($password !== $password2){
-    $password2_error = 'Hasła różnią się od siebie !';
-  }
+    echo $email_error . "<br>" . $password_error;
+    echo " Zmienne sesyjne - email" . $_SESSION['email'] . ', firstname : ' . $SESSION['first_name'];
 }
 
-if(empty($first_name_error) && empty($last_name_error) && empty($email_error) && empty($password_error) && empty($password2_error)){
-
-  $password = password_hash($password, PASSWORD_DEFAULT);
-
-  $sql = 'INSERT INTO users (first_name, last_name, email, password) VALUES(:first_name, :last_name, :email, :password)';
-  //bind params
-  if($stmt = $pdo->prepare($sql)){
-  $stmt->bindParam(':first_name', $first_name, PDO::PARAM_STR);
-  $stmt->bindParam(':last_name', $last_name, PDO::PARAM_STR);
-  $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-  $stmt->bindParam(':password', $password, PDO::PARAM_STR);
- 
-  //attempt to execute that
-    if($stmt->execute()){
-      header('location: login.php');
-    }else{
-      die('Coś nie działa przy zapisaniu do bazy :/');
-    }
-}
-unset($pdo);
-
-}
-else{
-  echo $email_error . $first_name_error . $last_name_error .  $password_error . $password2_error;
-
-}
-
-}
 
 ?>

@@ -22,7 +22,7 @@
     <div class="section white">
       <div class="row container">
         <h2 class="header center-align">Rejstracja</h2>
-      <form class="col s12" action="http://localhost/myApp/login_logic.php" method="POST">
+      <form class="col s12" action="http://localhost/myApp/registration_logic.php" method="POST">
         <div class="row">
           <div class="input-field col s6">
             <input id="first_name" type="text" name="first_name">

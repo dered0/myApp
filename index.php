@@ -1,6 +1,17 @@
 <?php
+// session first
+session_start();
+
+
 // this file include db config
 require_once 'db.php';
+
+//validate login
+
+if(!isset($_SESSION['email']) || empty($_SESSION['email'])){
+  header('location: login.php');
+  exit;
+}
 
 
 

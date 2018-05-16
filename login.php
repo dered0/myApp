@@ -29,7 +29,7 @@ require_once 'db.php';
     <div class="section white">
       <div class="row container">
         <h2 class="header center-align">Logowanie</h2>
-      <form class="col s12">
+      <form class="col s12" action="http://localhost/myApp/login_logic.php" method="POST">
         <div class="row">
           <div class="input-field col s12">
             <input id="email" type="email" name="email" class="validate">
@@ -40,6 +40,15 @@ require_once 'db.php';
           <div class="input-field col s12">
             <input id="password" type="password" class="validate" name="password">
             <label for="password">Hasło</label>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="col s6 center-align">
+            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Logowanie
+            </button>
+          </div>
+          <div class="col s6 center-align">
+          <a class="waves-effect waves-light btn-large" href="registration.php">Rejstracja</a>
           </div>
         </div>
         </form>
