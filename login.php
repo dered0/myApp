@@ -1,12 +1,3 @@
-<?php
-// this file include db config
-require_once 'db.php';
-
-
-
-
-?>
-
 <!DOCTYPE html>
   <html>
     <head>

@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                             session_start();
                             $_SESSION['email'] = $email;
                             $_SESSION['first_name'] = $row['first_name'];
-                            header('location: index.php');
+                            header('Location: index.php');
                         }else{
                             $password_error = 'Hasło nieprawidłowe !';
                         }
@@ -64,5 +64,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     echo " Zmienne sesyjne - email" . $_SESSION['email'] . ', firstname : ' . $SESSION['first_name'];
 }
 
+echo $email_error . "<br>" . $password_error;
+    echo " Zmienne sesyjne - email" . $_SESSION['email'] . 
+    ', firstname : ' . $SESSION['first_name'];
+echo "<br><br>" . $hashed_password;
+echo "<br>" . $password . "<br>";
+if(password_verify($password, $hashed_password)){
+    echo " dziala";
+}else{
+    echo "klurwa nie dziala";
+}
 
 ?>
