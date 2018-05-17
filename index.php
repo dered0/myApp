@@ -33,21 +33,44 @@ if(!isset($_SESSION['email']) || empty($_SESSION['email'])){
     </head>
 
     <body>
+    <nav>
+    <div class="nav-wrapper grey darken-4">
+      <a href="#!" class="brand-logo">Witaj <?php echo $_SESSION['first_name']; ?> !</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <div class="parallax-container">
-      <div class="parallax"><img src="img/img3.jpg"></div>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+  </ul>
+          
+
+<div class="parallax-container">
+      <div class="parallax"><img src="img/img5.jpg"></div>
     </div>
     <div class="section white">
       <div class="row container">
-        <h2 class="header center-align">INDEX -.-</h2>
-        <h4 class="center-align"><a href="registration.php">Rejstracja</a></h4>
-        <div class="divider"></div>
-        <h4 class="center-align"><a href="login.php">Logowanie</a></h4>
-      
+      <h3 class="header center-align">Witaj <?php echo $_SESSION['first_name']; ?></h3>
+      <div class="divider"></div>
+
+      <div class="row">
+        <div class="col s12 center-align">
+            <a class="waves-effect waves-light btn" href="logout.php">Wyloguj się</a>
       </div>
+      </div>
+        </div>
     </div>
     <div class="parallax-container">
-      <div class="parallax"><img src="img/img4.jpg"></div>
+      <div class="parallax"><img src="img/img6.jpg"></div>
     </div>
 
 
