@@ -3,8 +3,6 @@
 session_start();
 
 
-// this file include db config
-require_once 'db.php';
 
 //validate login
 
@@ -55,22 +53,53 @@ if(!isset($_SESSION['email']) || empty($_SESSION['email'])){
           
 
 <div class="parallax-container">
-      <div class="parallax"><img src="img/img5.jpg"></div>
+      <div class="parallax"><img src="img/img7.jpg"></div>
     </div>
     <div class="section white">
       <div class="row container">
-      <h3 class="header center-align">Witaj <?php echo $_SESSION['first_name']; ?></h3>
-      <div class="divider"></div>
-
-      <div class="row">
-        <div class="col s12 center-align">
-            <a class="waves-effect waves-light btn" href="logout.php">Wyloguj się</a>
-      </div>
-      </div>
-        </div>
+        <form class="col s12" action="contact_logic.php" method="POST">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="first_name" name="name" type="text" class="validate">
+                <label for="first_name">Imię</label>
+              </div>
+              </div>
+              <div class="row">
+              <div class="input-field col s12">
+                <input id="last_name" name="last_name" type="text" class="validate">
+                <label for="last_name">Nazwisko</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="subject" name="subject" name="subject" type="text" class="validate">
+                <label for="subject">Temat</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+              <input id="email" type="email" name="email" class="validate">
+            <label for="email">Email</label>
+            <span class="helper-text" data-error="Hmm .. Zły adres !" data-success="Dobrze !">Pomoc :)</span>
+              </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
+                   <label for="textarea1">Wpisz treść wiadmości(max 200 znakow)</label>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col s12 center-align">
+            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Wyślij
+            </button>
+          </div>
+          </div>
+          </form>
+      </div>  
     </div>
     <div class="parallax-container">
-      <div class="parallax"><img src="img/img6.jpg"></div>
+      <div class="parallax"><img src="img/img8.jpg"></div>
     </div>
 
 

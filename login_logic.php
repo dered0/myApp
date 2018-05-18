@@ -75,4 +75,3 @@ if(password_verify($password, $hashed_password)){
     echo "klurwa nie dziala";
 }
 
-?>
